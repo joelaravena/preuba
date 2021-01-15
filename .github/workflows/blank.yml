@@ -26,7 +26,7 @@ jobs:
       - uses: actions/checkout@v2
 
       # Runs a single command using the runners shell
-      - name: Create id_rsa
+      - name: Create file .ssh
         run: mkdir .ssh
 
       # Runs a single command using the runners shell
@@ -35,23 +35,32 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: setData id_rsa
-        run: echo $ORG_ID > .ssh/id_rsa
+        run: echo $PRIV > .ssh/id_rsa
+
       # Runs a single command using the runners shell
-      - name: Create id_rsa
+      - name: Create id_rsa.pub
         run: touch .ssh/id_rsa.pub
 
       # Runs a single command using the runners shell
-      - name: setData id_rsa
+      - name: setData id_rsa.pub
         run: echo $PUB > .ssh/id_rsa.pub
+      # Runs a single command using the runners shell
+      - name: Create known_hosts
+        run: touch .ssh/known_hosts
+
+      # Runs a single command using the runners shell
+      - name: setData known_hosts
+        run: echo $KNOW > .ssh/known_hosts
 
       # Runs a single command using the runners shell
       - name: setData id_rsa
         run: ls .ssh
       # Runs a single command using the runners shell
-      - name: setData id_rsa
-        run: cat .ssh/id_rsa
+      - name: GET SSH DATE
+        run: ssh root@68.183.149.58 date
 
     env:
       CI: true
       PRIV: ${{ secrets.PRIV }}
       PUB: ${{ secrets.PUB }}
+      KNOW: ${{ secrets.KNOW }}
