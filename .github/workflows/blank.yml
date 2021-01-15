@@ -57,7 +57,7 @@ jobs:
         run: ls .ssh
       # Runs a single command using the runners shell
       - name: GET SSH DATE
-        run: ssh root@68.183.149.58
+        run: ssh -t root@68.183.149.58 date
 
     env:
       CI: true
