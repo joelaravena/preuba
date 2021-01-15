@@ -62,7 +62,7 @@ jobs:
         uses: garygrossgarten/github-action-ssh@release
         with:
           command: ls -a
-          host: 68.183.149.58
+          host: 159.203.91.164
           username: root
           # passphrase: ${{ secrets.PASSPHRASE }}
           privateKey: ${{ secrets.PRIV}}
