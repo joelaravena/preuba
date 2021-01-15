@@ -22,43 +22,50 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      # # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      # - uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
-      - name: Create file .ssh
-        run: mkdir .ssh
+      # # Runs a single command using the runners shell
+      # - name: Create file .ssh
+      #   run: mkdir .ssh
 
-      # Runs a single command using the runners shell
-      - name: Create id_rsa
-        run: touch .ssh/id_rsa
+      # # Runs a single command using the runners shell
+      # - name: Create id_rsa
+      #   run: touch .ssh/id_rsa
 
-      # Runs a single command using the runners shell
-      - name: setData id_rsa
-        run: echo $PRIV > .ssh/id_rsa
+      # # Runs a single command using the runners shell
+      # - name: setData id_rsa
+      #   run: echo $PRIV > .ssh/id_rsa
 
-      # Runs a single command using the runners shell
-      - name: Create id_rsa.pub
-        run: touch .ssh/id_rsa.pub
+      # # Runs a single command using the runners shell
+      # - name: Create id_rsa.pub
+      #   run: touch .ssh/id_rsa.pub
 
-      # Runs a single command using the runners shell
-      - name: setData id_rsa.pub
-        run: echo $PUB > .ssh/id_rsa.pub
-      # Runs a single command using the runners shell
-      - name: Create known_hosts
-        run: touch .ssh/known_hosts
+      # # Runs a single command using the runners shell
+      # - name: setData id_rsa.pub
+      #   run: echo $PUB > .ssh/id_rsa.pub
+      # # Runs a single command using the runners shell
+      # - name: Create known_hosts
+      #   run: touch .ssh/known_hosts
 
-      # Runs a single command using the runners shell
-      - name: setData known_hosts
-        run: echo $KNOW > .ssh/known_hosts
+      # # Runs a single command using the runners shell
+      # - name: setData known_hosts
+      #   run: echo $KNOW > .ssh/known_hosts
 
-      # Runs a single command using the runners shell
-      - name: setData id_rsa
-        run: ls .ssh
-      # Runs a single command using the runners shell
-      - name: GET SSH DATE
-        run: ssh -t root@68.183.149.58 date
-
+      # # Runs a single command using the runners shell
+      # - name: setData id_rsa
+      #   run: ls .ssh
+      # # Runs a single command using the runners shell
+      # - name: GET SSH DATE
+      #   run: ssh -t root@68.183.149.58 date
+      - name: ls -a via ssh
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          command: ls -a
+          host: 68.183.149.58
+          username: root
+          # passphrase: ${{ secrets.PASSPHRASE }}
+          privateKey: ${{ secrets.PRIV}}
     env:
       CI: true
       PRIV: ${{ secrets.PRIV }}
