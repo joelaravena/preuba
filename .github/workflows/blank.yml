@@ -27,6 +27,10 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Create id_rsa
+        run: mkdir .ssh
+
+      # Runs a single command using the runners shell
+      - name: Create id_rsa
         run: touch .ssh/id_rsa
 
       # Runs a single command using the runners shell
